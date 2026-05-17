@@ -42,34 +42,34 @@ typedef struct
     char name[150];
     char pass[50];
 } login;
-int CLRM()
+int countRooms()
 {
-    int count =0;
-    FILE *f1=fopen("rooms.txt","r");
-    if(f1==NULL)
+    int count = 0;
+    char line[500];
+
+    FILE *roomsFile = fopen("rooms.txt", "r");
+    if (roomsFile == NULL)
     {
-        printf("Error");
+        printf("Error opening rooms.txt.\n");
         exit(1);
     }
-    while(!feof(f1))
-    {
 
-        char x[500];
-        while(fgets(x,500,f1))
+    while (fgets(line, sizeof(line), roomsFile) != NULL)
+    {
+        if (line[0] != '\n' && line[0] != '\0')
         {
-            x[strcspn(x,"\n")]=0;
             count++;
         }
-
     }
-    fclose(f1);
+
+    fclose(roomsFile);
     return count;
 }
 
 void userID()
 {
     char ch;
-    int z,y,i=0;
+    int z = 1, y = 1, i = 0;
     login x,p;
     setColor(5,0);
     printf("Enter username:");
@@ -104,13 +104,12 @@ void userID()
         printf("Error");
         exit(1);
     }
-    while(!feof(f1))
+    while (fscanf(f1, "%149s %149s", p.name, p.pass) == 2)
     {
-        fscanf(f1,"%s",&p.name);
-        fscanf(f1,"%s",&p.pass);
-        z=strcmp(x.name,p.name);
-        y=strcmp(x.pass,p.pass);
-        if(z==0 && y==0)
+        z = strcmp(x.name, p.name);
+        y = strcmp(x.pass, p.pass);
+
+        if (z == 0 && y == 0)
             break;
     }
     if (z==0&&y==0)
@@ -1810,7 +1809,7 @@ void editReservation(Reservation* r,int c,room* z,int n)
 }
 int main()
 {
-    int n2=CLRM();
+    int n2=countRooms();
     Reservation r[n2];
     room z[n2];
     userID();
@@ -1820,5 +1819,6 @@ int main()
     mainMenu(n2,r,z,c);
     return 0;
 }
+
 
 
