@@ -1,0 +1,2 @@
+154215,1005,confirmed,Demo Guest One,DEMO-ID-001,2,17-05-2026,guest.one@example.com,01000000001
+452324,3002,unconfirmed,Demo Guest Two,DEMO-ID-002,5,18-05-2026,guest.two@example.com,01000000002

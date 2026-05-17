@@ -1,0 +1,9 @@
+# C generated files
+*.exe
+*.o
+*.obj
+*.out
+*.log
+.vscode/
+.DS_Store
+Thumbs.db
