@@ -45,7 +45,7 @@ typedef struct
 int CLRM()
 {
     int count =0;
-    FILE *f1=fopen("Room.txt","r");
+    FILE *f1=fopen("rooms.txt","r");
     if(f1==NULL)
     {
         printf("Error");
@@ -318,7 +318,7 @@ void  loadrooms(room *z,int n2)
 {
     int i;
     char x[500];
-    FILE *f1=fopen("Room.txt","r");
+    FILE *f1=fopen("rooms.txt","r");
     if(f1==NULL)
     {
         printf("Error");
@@ -562,7 +562,7 @@ void RR(room *z, int n, Reservation *t, int *c)
     }
     while (!flag2);
     char a[100];
-    printf("enter 1 to save press any key to unsave and continue:" );
+    printf("enter 1 to save Press any key to continue to unsave and continue:" );
     scanf("%s",a);
     if(strcmp(a,"1")==0)
     {
@@ -578,7 +578,7 @@ void RR(room *z, int n, Reservation *t, int *c)
         strcpy(t[*c-1].cid.year,r.cid.year);
         strcpy(t[*c-1].email,r.email);
         strcpy(t[*c-1].mobileNumber,r.mobileNumber);
-        FILE *f1 = fopen("Room.txt", "w");
+        FILE *f1 = fopen("rooms.txt", "w");
         FILE *f2 = fopen("Reservations.txt", "w");
         for (i = 0; i < n; i++)
         {
@@ -858,7 +858,7 @@ void checkIn(Reservation *r, room *z, int n2,int c)
                         if(z[i].roomNumber==checkInData.roomNumber)
                         {
                             strcpy(z[i].status, "Reserved");
-                            FILE *f1=fopen("Room.txt","w");
+                            FILE *f1=fopen("rooms.txt","w");
                             for(i=0; i<n2; i++)
                             {
                                 fprintf(f1, "%d %s %s %d\n", z[i].roomNumber, z[i].status, z[i].category, z[i].price);
@@ -1144,7 +1144,7 @@ void cancelReservation(int *c,Reservation *r,int n,room* z )
     if (a=='1')
     {
         FILE *f2=fopen("Reservations.txt","w");
-        FILE *f1 = fopen("Room.txt", "w");
+        FILE *f1 = fopen("rooms.txt", "w");
         for (i = 0; i < n; i++)
         {
             fprintf(f1, "%d %s %s %d\n", z[i].roomNumber, z[i].status, z[i].category, z[i].price);
@@ -1216,7 +1216,7 @@ void checkout(int *c,Reservation *r,int n,room* z )
     if (strcmp(a,"1")==0)
     {
         FILE *f2=fopen("Reservations.txt","w");
-        FILE *f1 = fopen("Room.txt", "w");
+        FILE *f1 = fopen("rooms.txt", "w");
         for (i = 0; i < n; i++)
         {
             fprintf(f1, "%d %s %s %d\n", z[i].roomNumber, z[i].status, z[i].category, z[i].price);
@@ -1795,7 +1795,7 @@ void editReservation(Reservation* r,int c,room* z,int n)
                         r[i].email, r[i].mobileNumber);
             }
             fclose(f2);
-            FILE *f1=fopen("Room.txt","w");
+            FILE *f1=fopen("rooms.txt","w");
             for(i=0; i<n; i++)
             {
                 fprintf(f1, "%d %s %s %d\n", z[i].roomNumber, z[i].status, z[i].category, z[i].price);
@@ -1820,3 +1820,5 @@ int main()
     mainMenu(n2,r,z,c);
     return 0;
 }
+
+
